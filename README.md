@@ -1,4 +1,4 @@
-# Welcome to New Reader Demo
+# Welcome to News Reader Demo
 
 * bundle install
 * rake db:migrate
