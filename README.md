@@ -2,10 +2,10 @@
 
 * bundle install
 * rake db:migrate
+* rake db:seed
 
-Here are some feed urls that work:
-* http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
-* http://feeds.wired.com/wired/index
+Three feeds with their entries will be created upon running `rake
+db:seed`.
 
 Good luck. Have fun.
 
