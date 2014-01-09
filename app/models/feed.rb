@@ -25,9 +25,6 @@ class Feed < ActiveRecord::Base
     self.touch #this causes the updated_at column to be updated
     begin
       feed_data = SimpleRSS.parse(open(url))
-      self.title = feed_data.title
-      save!
-
       existing_entry_guids = Entry.pluck(:guid).sort
       feed_data.entries.each do |entry_data|
         unless existing_entry_guids.include?(entry_data.guid)
