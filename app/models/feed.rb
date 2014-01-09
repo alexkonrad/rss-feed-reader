@@ -22,6 +22,7 @@ class Feed < ActiveRecord::Base
 
   def reload
     # reloads entries
+    self.touch #this causes the updated_at column to be updated
     begin
       feed_data = SimpleRSS.parse(open(url))
       self.title = feed_data.title
