@@ -1,8 +1,11 @@
 class FeedsController < ApplicationController
   def index
+    @feeds = Feed.includes(:entries).all
+
+
     respond_to do |format|
       format.html { render :index }
-      format.json { render :json => Feed.all }
+      format.json { render json: @feeds, :methods => :entries }
     end
   end
 
