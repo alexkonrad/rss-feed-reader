@@ -1,7 +1,9 @@
 class Feed < ActiveRecord::Base
-  attr_accessible :title, :url
+  attr_accessible :title, :url, :is_favorite
 
   has_many :entries, :dependent => :destroy
+  has_many :feed_subscriptions
+  has_many :subscribers, through: :feed_subscriptions, source: :user
 
   def self.find_or_create_by_url(url)
     feed = Feed.find_by_url(url)

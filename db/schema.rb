@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626183103) do
+ActiveRecord::Schema.define(:version => 20140212220010) do
 
   create_table "entries", :force => true do |t|
     t.string   "guid",         :null => false
@@ -27,13 +27,32 @@ ActiveRecord::Schema.define(:version => 20130626183103) do
   add_index "entries", ["feed_id"], :name => "index_entries_on_feed_id"
   add_index "entries", ["guid"], :name => "index_entries_on_guid", :unique => true
 
-  create_table "feeds", :force => true do |t|
-    t.string   "url",        :null => false
-    t.string   "title",      :null => false
+  create_table "feed_subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "feed_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "feed_subscriptions", ["feed_id"], :name => "index_feed_subscriptions_on_feed_id"
+  add_index "feed_subscriptions", ["user_id"], :name => "index_feed_subscriptions_on_user_id"
+
+  create_table "feeds", :force => true do |t|
+    t.string   "url",                            :null => false
+    t.string   "title",                          :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "is_favorite", :default => false
+  end
+
   add_index "feeds", ["url"], :name => "index_feeds_on_url", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "username"
+    t.string   "password_digest"
+    t.string   "session_token"
+  end
 
 end

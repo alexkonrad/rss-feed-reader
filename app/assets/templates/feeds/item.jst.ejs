@@ -1,3 +1,7 @@
-<a href="#/<%= feed.escape('id') %>/entries"><%= feed.escape('title') %></a>
+<div data-id="<%= feed.escape('id') %>">
+<a href="#/<%= feed.escape('id') %>/entries">
+<%= feed.escape('title') %></a>
+<a class="favorite">Favorite</a>
+</div>
 
 

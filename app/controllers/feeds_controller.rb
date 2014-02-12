@@ -1,6 +1,8 @@
 class FeedsController < ApplicationController
+
   def index
     @feeds = Feed.includes(:entries).all
+    # @feeds = current_user.followed_feeds.includes(:entries)
 
 
     respond_to do |format|
@@ -16,5 +18,12 @@ class FeedsController < ApplicationController
     else
       render :json => { error: "invalid url" }, status: :unprocessable_entity
     end
+  end
+
+  def update
+    feed = Feed.find(params[:id])
+    feed.update_attributes(params[:feed])
+    render :json => feed
+
   end
 end
