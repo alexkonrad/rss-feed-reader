@@ -1,12 +1,3 @@
-# Welcome to News Reader Demo
+# RSS Feed Reader
 
-* bundle install
-* rake db:migrate
-* rake db:seed
-
-Three feeds with their entries will be created upon running `rake
-db:seed`.
-
-Good luck. Have fun.
-
-
+RSS feed reader in Javascript. Implements nested attributes in Backbone.js, automatic feed updates with AJAX, and overrides JSON objects to interface with custom Rails API.
